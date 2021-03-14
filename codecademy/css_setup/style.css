@@ -3,9 +3,13 @@ p {
   }
   
   h1 {
-    font-family: Arial; color: maroon;
+    color: maroon;
   }
   
   .title {
     color: teal;
+  }
+  
+  .uppercase {
+    text-transform: uppercase;
   }

@@ -71,3 +71,7 @@ footer .next {
 footer .back {
     float: left;
 }
+
+footer {
+    padding: 1em 0 3 em 0;
+}

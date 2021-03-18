@@ -22,11 +22,16 @@ header p {
     color: white;
 }
 
-header nav image {
+header nav img {
     border-radius: 50%;
 }
 
 a:link,
 a:visited {
     color: black;
+}
+
+header address {
+    font-size: 0.9em;
+    font-style: italic;
 }

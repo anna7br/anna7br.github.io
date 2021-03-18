@@ -88,3 +88,15 @@ i {
 .ml-3 {
     margin-left: 00.3em;
 }
+
+@media screen and (max-width: 900px) {
+    main {
+        max-width: 90%;
+    }
+}
+
+@media screen and (max-width: 1280px) {
+    header img {
+        width: 100vw;
+    }
+}

@@ -28,3 +28,5 @@ for (let entry of ROUTE) {
   }
 
 }
+
+console.log(document.querySelector("#map"));

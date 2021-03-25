@@ -7,5 +7,6 @@ const map = L.map("map", {
 });
 
 let mrk = L.marker([-45.345275, 170.826061]).addTo(map);
+mrk.bindPopup("Moeraki Boulders").openPopup();
 
 console.log(document.querySelector("#map"));

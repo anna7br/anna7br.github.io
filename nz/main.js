@@ -6,6 +6,7 @@ let stop = {
     user: "anna7br",
     wikipedia: "https://en.wikipedia.org/wiki/Moeraki_Boulders",
 };
+console.log(ROUTE);
 
 const map = L.map("map", {
     center: [stop.lat, stop.lng],

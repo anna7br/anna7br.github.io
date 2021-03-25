@@ -20,10 +20,16 @@ let nav = document.querySelector('#navigation');
 console.log(nav);
 
 //console.log(ROUTE);
+
+ROUTE.sort((stop1, stop2) => {
+    return stop1.nr > stop2.nr
+});
+
+
 for (let entry of ROUTE) {
   // console.log(entry);
   nav.innerHTML += `
-    <option value="${entry.user}r">Stop ${entry.nr}: ${entry.name}</option>
+    <option value="${entry.user}">Stop ${entry.nr}: ${entry.name}</option>
   `;
   let mrk = L.marker([entry.lat, entry.lng]).addTo(map);
   mrk.bindPopup(`<h4>Stop ${entry.nr}: ${entry.name}<h4>

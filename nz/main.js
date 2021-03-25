@@ -17,7 +17,7 @@ const map = L.map("map", {
 
 let mrk = L.marker([stop.lat, stop.lng]).addTo(map);
 mrk.bindPopup(`<h4>Stop ${stop.nr}: ${stop.name}</h4>
-<p><a href="${stop.wikipedia}" Read about stop in Wikipedia</a></p>
+<p><i class="fas fa-external-link-alt mr-3"></i><a href="${stop.wikipedia}">Read about stop in Wikipedia</a></p>
 `).openPopup();
 
 

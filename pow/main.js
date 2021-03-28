@@ -1,102 +1,57 @@
-body {
-    max-width: 1280px;
-    margin: auto;
-    font-family: 'Open Sans', sans-serif;
-}
+let stop = {
+    nr: 6,
+    name: "Moeraki Boulders",
+    lat: -45.345275,
+    lng: 170.826061,
+    user: "anna7br",
+    wikipedia: "https://en.wikipedia.org/wiki/Moeraki_Boulders",
+};
 
-header {
-    text-align: center;
-}
+const map = L.map("map", {
+    center: [stop.lat, stop.lng],
+    zoom: [13],
+    layers: [
+        L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png")
+    ]
+});
 
-header p {
-    text-align: right;
-    font-weight: bold;
-    font-size: 0.8em;
-    padding-right: 1em;
-    margin-top: -2em;
-}
 
-.white,
-.white a:link,
-.white a:visited {
-    color: white;
-}
+let nav = document.querySelector('#navigation');
+console.log(nav);
 
-header nav img {
-    border-radius: 50%;
-}
+//console.log(ROUTE);
 
-a:link,
-a:visited {
-    color: black;
-}
+ROUTE.sort((stop1, stop2) => {
+    return stop1.nr > stop2.nr
+});
 
-header address {
-    font-size: 0.9em;
-    font-style: italic;
-}
 
-main {
-    max-width: 70%;
-    margin: auto
-}
+for (let entry of ROUTE) {
+  // console.log(entry);
+  nav.innerHTML += `
+    <option value="${entry.user}">Stop ${entry.nr}: ${entry.name}</option>
+  `;
+  let mrk = L.marker([entry.lat, entry.lng]).addTo(map);
+  mrk.bindPopup(`<h4>Stop ${entry.nr}: ${entry.name}<h4>
+<p><a href="${entry.wikipedia}"><i class="fas fa-external-link-alt mr-3"></i>Read about stop in Wikipedia</a></p>
+`);
+  if (entry.nr == 6) {
+    map.setView([entry.lat, entry.lng], 13);
+    mrk.openPopup();
+  }
 
-main p {
-    text-align: justify;
-    font-family: 'Roboto Condensed', sans-serif;
 }
+nav.options.selectedIndex = 6 - 1;
+nav.onchange = (evt) => {
+    let selected = evt.target.selectedIndex;
+    let options = evt.target.options;
+    let username =options[selected].value;
+    let link = `https://${username}.github.io/nz/index.html`;
+    console.log(username, link);
 
-main figure {
-    margin-left: 0;
-    width: 100%;
-}
+    window.location.href = link;
+};
 
-main figure img {
-    border: 1px solid black;
-}
+console.log(document.querySelector("#map"));
 
-#map {
-    height: 360px;
-    width: 100%;
-    border: 1px solid gray;
-}
-
-main ul {
-    list-style-type: circle;
-}
-
-footer .next {
-    float: right;
-}
-
-footer .back {
-    float: left;
-}
-
-footer {
-    padding: 1em 0 3 em 0;
-}
-
-i {
-    padding-right: 0.3em;
-}
-
-.mr-3 {
-    margin-right: 00.3em;
-}
-
-.ml-3 {
-    margin-left: 00.3em;
-}
-
-@media screen and (max-width: 900px) {
-    main {
-        max-width: 90%;
-    }
-}
-
-@media screen and (max-width: 1280px) {
-    header img.banner {
-        width: 100vw;
-    }
-}
+//            <option value="anna7br">Moeraki_Boulders</option>

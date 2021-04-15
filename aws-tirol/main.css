@@ -2,9 +2,9 @@ h2 {
     text.align: center;
 }
 
-map {
+#map {
     width: 90vw;
-    height:90 vh;
+    height: 90vh;
     border: solid black 1px;
     margin: auto;
 }

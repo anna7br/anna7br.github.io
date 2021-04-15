@@ -74,17 +74,18 @@ fetch(awsUrl)
                     ], {
                         icon: snowIcon
                     });
-                    snowMarker.addTo(snowLayer);
+                    snowMarker.addTo(snowLayer);}
+                    
                     if (station.properties.WG) {
-                        let highlightClass = '';
+                        let windhighlightClass = '';
                         if (station.properties.WG > 50) {
-                            highlightClass = 'wind-50';
+                            windhighlightClass = 'wind-50';
                         }
                         if (station.properties.WG > 70) {
-                            highlightClass = 'wind-70';
+                            windhighlightClass = 'wind-70';
                         }
                         let windIcon = L.divIcon({
-                            html: `<div class="wind-label ${highlightClass}">${station.properties.WG}</div>`
+                            html: `<div class="wind-label ${windhighlightClass}">${station.properties.WG}</div>`
                         })
                         let windMarker = L.marker([
                             station.geometry.coordinates[1],
@@ -97,4 +98,4 @@ fetch(awsUrl)
                 }
                 // set map view to all stations
                 map.fitBounds(awsLayer.getBounds());
-            );
+            });

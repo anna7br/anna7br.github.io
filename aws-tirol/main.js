@@ -75,17 +75,16 @@ fetch(awsUrl)
                         icon: snowIcon
                     });
                     snowMarker.addTo(snowLayer);}
-
                     if (station.properties.WG) {
-                        let windhighlightClass = '';
-                        if (station.properties.WG > 50) {
-                            windhighlightClass = 'wind-50';
+                        let windHighlightClass = '';
+                        if (station.properties.WG > 10) {
+                            windHighlightClass = 'wind-10';
                         }
-                        if (station.properties.WG > 70) {
-                            windhighlightClass = 'wind-70';
+                        if (station.properties.WG > 20) {
+                            windHighlightClass = 'wind-20';
                         }
                         let windIcon = L.divIcon({
-                            html: `<div class="wind-label ${windhighlightClass}">${station.properties.WG}</div>`,
+                            html: `<div class="wind-label ${windHighlightClass}">${station.properties.WG}</div>`,
                         });
                         let windMarker = L.marker([
                             station.geometry.coordinates[1],

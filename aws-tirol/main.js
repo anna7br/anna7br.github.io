@@ -37,14 +37,21 @@ fetch(awsUrl)
                 station.geometry.coordinates[1],
                 station.geometry.coordinates[0]
             ]);
+
+            let formattedDate = new Date(station.properties.date);
             marker.bindPopup(`
             <h3>${station.properties.name}</h3>
             <ul>
-                <li>Datum: ${station.properties.date}</li>
+                <li>Seehöhe: ${station.geometry.coordinates[2]} m</li>
+                <li>Datum: ${formattedDate.toLocaleString("de")}</li>
                 <li>Temperatur: ${station.properties.LT} °C</li>
+                <li>Luftfeuchtigkeit: ${station.properties.RH} %</li>
+                <li>Schneehöhe: ${station.properties.LT} C</li>
+                <li>Windgeschwindigkeit: ${station.properties.WG} km/h</li>
+                <li>Temperatur: ${station.properties.LT} C</li>
             </ul>
             `);
-            marker.addTo(map);
+            marker.addTo(awsLayer);
         }
         // set map view to all stations
         map.fitBounds(awsLayer.getBounds());

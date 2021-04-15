@@ -30,7 +30,7 @@ snowLayer.addTo(map);
 
 let awsUrl ='https://wiski.tirol.gv.at/lawine/produkte/ogd.geojson';
 
-etch(awsUrl)
+fetch(awsUrl)
     .then(response => response.json())
     .then(json => {
         console.log('Daten konvertiert: ', json);
@@ -72,7 +72,7 @@ etch(awsUrl)
                     icon: snowIcon
                 });
                 snowMarker.addTo(snowLayer);
-
+            }
         }
         // set map view to all stations
         map.fitBounds(awsLayer.getBounds());

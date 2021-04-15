@@ -1,7 +1,5 @@
 let basemapGray = L.tileLayer.provider('BasemapAT.grau');
 
-
-
 let map = L.map("map", {
     center: [47, 11],
     zoom: 9,
@@ -10,9 +8,7 @@ let map = L.map("map", {
     ]
 });
 
-
 let layerControl = L.control.layers({
     "BasemapAT.grau": basemapGray,
-    "BasemapAT.orthophoto": L.tileLayer.provider('BasemapAT.ortophoto')
+    "BasemapAT.orthofoto": L.tileLayer.provider('BasemapAT.orthofoto')
 }).addTo(map);
-

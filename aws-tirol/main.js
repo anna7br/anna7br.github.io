@@ -20,3 +20,23 @@ let layerControl = L.control.layers({
         L.tileLayer.provider('BasemapAT.overlay')
     ])
 }).addTo(map);
+
+
+
+let awsUrl ='https://wiski.tirol.gv.at/lawine/produkte/ogd.geojson';
+
+fetch(awsUrl)
+    .then(response => response.json())
+    .then(json => {
+        //console.log('Daten konvertiert: ', json);
+        for (station of json.features) {
+            //console.log('Station: ', station);
+            let marker = L.marker(
+                [station.geometry.coordinates[1],
+                station.geometry.coordinates[0]]
+                );
+            marker.bindPopup(`<h3>${station.properties.name}</h3>`);
+            marker.addTo(map);
+        }
+    });
+

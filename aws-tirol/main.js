@@ -36,15 +36,15 @@ windLayer.addTo(map);
 fetch(awsUrl)
     .then(response => response.json())
     .then(json => {
-            console.log('Daten konvertiert: ', json);
-            for (station of json.features) {
-                // console.log('Station: ', station);
-                let marker = L.marker([
-                    station.geometry.coordinates[1],
-                    station.geometry.coordinates[0]
-                ]);
-                let formattedDate = new Date(station.properties.date);
-                marker.bindPopup(`
+        console.log('Daten konvertiert: ', json);
+        for (station of json.features) {
+            // console.log('Station: ', station);
+            let marker = L.marker([
+                station.geometry.coordinates[1],
+                station.geometry.coordinates[0]
+            ]);
+            let formattedDate = new Date(station.properties.date);
+            marker.bindPopup(`
             <h3>${station.properties.name}</h3>
             <ul>
               <li>Datum: ${formattedDate.toLocaleString("de")}</li>
@@ -56,45 +56,46 @@ fetch(awsUrl)
             </ul>
             <a target="_blank" href="https://wiski.tirol.gv.at/lawine/grafiken/1100/standard/tag/${station.properties.plot}.png">Grafik</a>
             `);
-                marker.addTo(awsLayer);
-                if (station.properties.HS) {
-                    let highlightClass = '';
-                    if (station.properties.HS > 100) {
-                        highlightClass = 'snow-100';
-                    }
-                    if (station.properties.HS > 200) {
-                        highlightClass = 'snow-200';
-                    }
-                    let snowIcon = L.divIcon({
-                        html: `<div class="snow-label ${highlightClass}">${station.properties.HS}</div>`
-                    })
-                    let snowMarker = L.marker([
-                        station.geometry.coordinates[1],
-                        station.geometry.coordinates[0]
-                    ], {
-                        icon: snowIcon
-                    });
-                    snowMarker.addTo(snowLayer);}
-                    if (station.properties.WG) {
-                        let windHighlightClass = '';
-                        if (station.properties.WG > 10) {
-                            windHighlightClass = 'wind-10';
-                        }
-                        if (station.properties.WG > 20) {
-                            windHighlightClass = 'wind-20';
-                        }
-                        let windIcon = L.divIcon({
-                            html: `<div class="wind-label ${windHighlightClass}">${station.properties.WG}</div>`,
-                        });
-                        let windMarker = L.marker([
-                            station.geometry.coordinates[1],
-                            station.geometry.coordinates[0]
-                        ], {
-                            icon: windIcon
-                        });
-                        windMarker.addTo(windLayer);
-                    }
+            marker.addTo(awsLayer);
+            if (station.properties.HS) {
+                let highlightClass = '';
+                if (station.properties.HS > 100) {
+                    highlightClass = 'snow-100';
                 }
-                // set map view to all stations
-                map.fitBounds(awsLayer.getBounds());
-            });
+                if (station.properties.HS > 200) {
+                    highlightClass = 'snow-200';
+                }
+                let snowIcon = L.divIcon({
+                    html: `<div class="snow-label ${highlightClass}">${station.properties.HS}</div>`
+                })
+                let snowMarker = L.marker([
+                    station.geometry.coordinates[1],
+                    station.geometry.coordinates[0]
+                ], {
+                    icon: snowIcon
+                });
+                snowMarker.addTo(snowLayer);
+            }
+            if (station.properties.WG) {
+                let windHighlightClass = '';
+                if (station.properties.WG > 10) {
+                    windHighlightClass = 'wind-10';
+                }
+                if (station.properties.WG > 20) {
+                    windHighlightClass = 'wind-20';
+                }
+                let windIcon = L.divIcon({
+                    html: `<div class="wind-label ${windHighlightClass}">${station.properties.WG}</div>`,
+                });
+                let windMarker = L.marker([
+                    station.geometry.coordinates[1],
+                    station.geometry.coordinates[0]
+                ], {
+                    icon: windIcon
+                });
+                windMarker.addTo(windLayer);
+            }
+        }
+        // set map view to all stations
+        map.fitBounds(awsLayer.getBounds());
+    });

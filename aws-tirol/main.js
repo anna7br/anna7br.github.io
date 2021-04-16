@@ -33,7 +33,7 @@ let windLayer = L.featureGroup();
 layerControl.addOverlay(windLayer, "Windgeschwindigkeiten");
 //windLayer.addTo(map);
 let tempLayer = L.featureGroup();
-layerControl.addOverlay(temppLayer, "Temperaturen");
+layerControl.addOverlay(tempLayer, "Temperaturen");
 tempLayer.addTo(map);
 
 fetch(awsUrl)
@@ -105,6 +105,9 @@ fetch(awsUrl)
                 }
                 if (station.properties.LT > 0) {
                     tempHighlightClass = 'tempPlus';
+                }
+                if (station.properties.LT == 0) {
+                    tempHighlightClass = 'temp0';
                 }
                 let tempIcon = L.divIcon({
                     html: `<div class="temp-label ${tempHighlightClass}">${station.properties.LT}</div>`,

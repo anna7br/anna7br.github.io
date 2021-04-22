@@ -49,6 +49,15 @@ L.control.scale({
     metric: true, imperial: false
 }).addTo(map);
 
+let newLabel = (coords, options) => {
+    console.log("Koordinaten coords: ", coords);
+    console.log("Optionen: ", options);
+    let marker = L.marker([coords[1], coords[0]]);
+    console.log("Marker: ", marker);
+    return marker;
+};
+
+
 
 
 let awsUrl = 'https://wiski.tirol.gv.at/lawine/produkte/ogd.geojson';
@@ -78,7 +87,7 @@ fetch(awsUrl)
             <a target="_blank" href="https://wiski.tirol.gv.at/lawine/grafiken/1100/standard/tag/${station.properties.plot}.png">Grafik</a>
             `);
             marker.addTo(overlays.stations);
-            if (typeof station.properties.HS = "number") {
+            if (typeof station.properties.HS == "number") {
                 let highlightClass = '';
                 if (station.properties.HS > 100) {
                     highlightClass = 'snow-100';
@@ -121,29 +130,11 @@ fetch(awsUrl)
                 windMarker.addTo(overlays.windspeed);
             }
             if (typeof station.properties.LT == "number") {
-                let tempHighlightClass = '';
-                if (station.properties.LT < 0) {
-                    tempHighlightClass = 'tempMinus';
-                }
-                if (station.properties.LT > 0) {
-                    tempHighlightClass = 'tempPlus';
-                }
-                if (station.properties.LT == 0) {
-                    tempHighlightClass = 'temp0';
-                }
-                // https://leafletjs.com/reference-1.7.1.html#icon
-                let tempIcon = L.divIcon({
-                    html: `<div class="temp-label ${tempHighlightClass}">${station.properties.LT}</div>`,
-                });
-                // https://leafletjs.com/reference-1.7.1.html#marker
-                let tempMarker = L.marker([
-                    station.geometry.coordinates[1],
-                    station.geometry.coordinates[0]
-                ], {
-                    icon: tempIcon
-                });
-                tempMarker.addTo(overlays.temperature);
-            }
+                let marker = newLabel(station.geometry.coordinates, {
+                    value: station.properties.LT})
+                };
+                marker.addTo(overlays.temperature);
+
         }
         // set map view to all stations
         map.fitBounds(overlays.stations.getBounds());

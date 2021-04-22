@@ -111,7 +111,7 @@ fetch(awsUrl)
             }
             if (typeof station.properties.WG == "number") {
                 let marker = newLabel(station.geometry.coordinates, {
-                    value: station.properties.WG
+                    value: station.properties.WG,
                     colors: COLORS.windspeed
                 });
                 marker.addTo(overlays.windspeed);

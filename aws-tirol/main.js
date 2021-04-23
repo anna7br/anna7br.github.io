@@ -15,7 +15,8 @@ let overlays = {
     temperature: L.featureGroup(),
     snowheight: L.featureGroup(),
     windspeed: L.featureGroup(),
-    winddirection: L.featureGroup()
+    winddirection: L.featureGroup(),
+    humidity: L.featureGroup()
 };
 
 // https://leafletjs.com/reference-1.7.1.html#control
@@ -37,7 +38,8 @@ let layerControl = L.control.layers({
     "Temperatur [°C]": overlays.temperature,
     "Schneehöhe [cm]": overlays.snowheight,
     "Windgeschwindigkeit [km/h]": overlays.windspeed,
-    "Windrichtung": overlays.winddirection
+    "Windrichtung": overlays.winddirection,
+    "Relative Luftfeuchtigkeit [%]": overlays.humidity
 }, {
     collapsed: false
 }).addTo(map);

@@ -47,12 +47,13 @@ overlays.temperature.addTo(map);
 
 // Maßstab einbauen
 L.control.scale({
-    metric: true, imperial: false
+    metric: true,
+    imperial: false
 }).addTo(map);
 
 let getColor = (value, colorRamp) => {
     console.log("Wert: ", value, "Palette: ", colorRamp);
-    for(let rule of colorRamp) {
+    for (let rule of colorRamp) {
         if (value >= rule.min && value < rule.max) {
             return rule.col;
         }
@@ -60,15 +61,17 @@ let getColor = (value, colorRamp) => {
     return "black";
 };
 
-let getDirection = (value, direction) => {
-    console.log("Wert: ", value, "Windrichtung: ", direction);
-    for(let rule of direction) {
-        if (value >= rule.min && value < rule.max) {
-            return rule.col;
+
+let getDirection = (direction, class) => {
+    console.log("Wert: ", direction);
+    for (let rule of class) {
+        if (direction >= rule.min && direction < rule.max) {
+            return rule.dir;
         }
     }
-    return "black";
+    return "0";
 };
+
 
 let newLabel = (coords, options) => {
     let color = getColor(options.value, options.colors);
@@ -85,6 +88,7 @@ let newLabel = (coords, options) => {
 
 
 
+
 let awsUrl = 'https://wiski.tirol.gv.at/lawine/produkte/ogd.geojson';
 
 fetch(awsUrl)
@@ -94,6 +98,10 @@ fetch(awsUrl)
         for (station of json.features) {
             // console.log('Station: ', station);
             // https://leafletjs.com/reference-1.7.1.html#marker
+            /*let richtung = getDirection({
+                value: station.properties.WR,
+                direction: DIRECTIONS
+            });*/
             let marker = L.marker([
                 station.geometry.coordinates[1],
                 station.geometry.coordinates[0]
@@ -113,7 +121,7 @@ fetch(awsUrl)
             <a target="_blank" href="https://wiski.tirol.gv.at/lawine/grafiken/1100/standard/tag/${station.properties.plot}.png">Grafik</a>
             `);
             marker.addTo(overlays.stations);
-        
+
             if (typeof station.properties.LT == "number") {
                 let marker = newLabel(station.geometry.coordinates, {
                     value: station.properties.LT.toFixed(1),
@@ -150,3 +158,16 @@ fetch(awsUrl)
         // set map view to all stations
         map.fitBounds(overlays.stations.getBounds());
     });
+
+    //Rain Plugin
+    // Change default options
+    var rainviewer = L.control.rainviewer({
+        position: 'bottomleft',
+        nextButtonText: '>',
+        playStopButtonText: 'Start/Stop',
+        prevButtonText: '<',
+        positionSliderLabelText: "Time:",
+        opacitySliderLabelText: "Opacity:",
+        animationInterval: 500,
+        opacity: 0.5
+      });

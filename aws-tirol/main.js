@@ -89,7 +89,7 @@ let newLabel = (coords, options) => {
 let newDirection = (coords, options) => {
     let direction = getDirection(options.value, options.directions);
     let label = L.divIcon({
-        html: `<div style="background-color:${color}">${options.value}</div>`,
+        html: `<div>${direction}</div>`,
         className: "text-label"
     });
     let marker = L.marker([coords[1], coords[0]], {

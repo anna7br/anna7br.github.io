@@ -165,7 +165,7 @@ fetch(awsUrl)
                 });
                 marker.addTo(overlays.humidity);
             }
-            if (typeof station.properties.WG == "number") {
+            if (typeof station.properties.WR == "number") {
                 let marker = newDirection(station.geometry.coordinates, {
                     value: station.properties.WR,
                     directions: DIRECTIONS,

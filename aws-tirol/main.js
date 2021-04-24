@@ -51,6 +51,7 @@ L.control.scale({
     imperial: false
 }).addTo(map);
 
+
 let getColor = (value, colorRamp) => {
     console.log("Wert: ", value, "Palette: ", colorRamp);
     for (let rule of colorRamp) {
@@ -61,11 +62,10 @@ let getColor = (value, colorRamp) => {
     return "black";
 };
 
-
-let getDirection = (direction, class) => {
+let getDirection = (direction, category) => {
     console.log("Wert: ", direction);
-    for (let rule of class) {
-        if ((direction >= rule.min) && (direction < rule.max)) {
+    for (let rule of category) {
+        if (direction >= rule.min && direction < rule.max) {
             return rule.dir;
         }
     }

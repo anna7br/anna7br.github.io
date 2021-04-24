@@ -86,7 +86,18 @@ let newLabel = (coords, options) => {
     return marker;
 };
 
-
+let newDirection = (coords, options) => {
+    let direction = getDirection(options.value, options.directions);
+    let label = L.divIcon({
+        html: `<div style="background-color:${color}">${options.value}</div>`,
+        className: "text-label"
+    });
+    let marker = L.marker([coords[1], coords[0]], {
+        icon: label,
+        title: `${options.station} (${coords[2]}m)`
+    });
+    return marker;
+};
 
 
 let awsUrl = 'https://wiski.tirol.gv.at/lawine/produkte/ogd.geojson';

@@ -65,7 +65,7 @@ let getColor = (value, colorRamp) => {
 let getDirection = (direction, class) => {
     console.log("Wert: ", direction);
     for (let rule of class) {
-        if (direction >= rule.min && direction < rule.max) {
+        if ((direction >= rule.min) && (direction < rule.max)) {
             return rule.dir;
         }
     }
@@ -164,6 +164,14 @@ fetch(awsUrl)
                     station: station.properties.name
                 });
                 marker.addTo(overlays.humidity);
+            }
+            if (typeof station.properties.WG == "number") {
+                let marker = newDirection(station.geometry.coordinates, {
+                    value: station.properties.WR,
+                    directions: DIRECTIONS,
+                    station: station.properties.name
+                });
+                marker.addTo(overlays.winddirection);
             }
         }
         // set map view to all stations

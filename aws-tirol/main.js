@@ -183,9 +183,9 @@ fetch(awsUrl)
     // Change default options
     let rainviewer = L.control.rainviewer({
         position: 'bottomleft',
-        nextButtonText: '->',
+        nextButtonText: '>',
         playStopButtonText: 'Start | Stop',
-        prevButtonText: '<-',
+        prevButtonText: '<',
         positionSliderLabelText: "Time:",
         opacitySliderLabelText: "Opacity:",
         animationInterval: 500,

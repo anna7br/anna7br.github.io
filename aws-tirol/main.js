@@ -181,13 +181,14 @@ fetch(awsUrl)
 
     //Rain Plugin
     // Change default options
-    var rainviewer = L.control.rainviewer({
+    let rainviewer = L.control.rainviewer({
         position: 'bottomleft',
-        nextButtonText: '>',
-        playStopButtonText: 'Start/Stop',
-        prevButtonText: '<',
+        nextButtonText: '->',
+        playStopButtonText: 'Start | Stop',
+        prevButtonText: '<-',
         positionSliderLabelText: "Time:",
         opacitySliderLabelText: "Opacity:",
         animationInterval: 500,
         opacity: 0.5
       });
+      rainviewer.addTo(map);

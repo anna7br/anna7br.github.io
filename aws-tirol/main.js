@@ -179,16 +179,16 @@ fetch(awsUrl)
         map.fitBounds(overlays.stations.getBounds());
     });
 
-    //Rain Plugin
-    // Change default options
-    let rainviewer = L.control.rainviewer({
-        position: 'bottomleft',
-        nextButtonText: '>',
-        playStopButtonText: 'Start | Stop',
-        prevButtonText: '<',
-        positionSliderLabelText: "Time:",
-        opacitySliderLabelText: "Opacity:",
-        animationInterval: 500,
-        opacity: 0.5
-      });
-      rainviewer.addTo(map);
+//Rain Plugin
+// Change default options
+let rainviewer = L.control.rainviewer({
+    position: 'bottomleft',
+    nextButtonText: '>',
+    playStopButtonText: 'Start | Stop',
+    prevButtonText: '<',
+    positionSliderLabelText: "Time:",
+    opacitySliderLabelText: "Opacity:",
+    animationInterval: 500,
+    opacity: 0.5
+});
+rainviewer.addTo(map);

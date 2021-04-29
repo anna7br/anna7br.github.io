@@ -111,3 +111,8 @@ for (let config of OGDWIEN) {
             }
         })
 }
+
+L.control.scale({
+    imperial: false
+}
+).addTo(map);

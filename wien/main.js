@@ -41,13 +41,15 @@ let layerControl = L.control.layers({
 }, {
     "Liniennetz Vienna Sightseeing": overlays.busLines,
     "Haltestellen Vienna Sightseeing": overlays.busStops,
-    "Fußgängerzonen": overlays.pedAreas
+    "Fußgängerzonen": overlays.pedAreas,
+    "Sehenswürdigkeiten": overlays.sights
 }).addTo(map);
 
 // alle Overlays nach dem Laden anzeigen
 overlays.busLines.addTo(map);
 overlays.busStops.addTo(map);
 overlays.pedAreas.addTo(map);
+overlays.sights.addTo(map);
 
 let drawBusStop = (geojsonData) => {
     L.geoJson(geojsonData, {
@@ -110,9 +112,7 @@ let drawPedestrianAreas = (geojsonData) => {
 let drawSights = (geojsonData) => {
     L.geoJson(geojsonData, {
         onEachFeature: (feature, layer) => {
-            layer.bindPopup(`<strong>${feature.properties.LINE_NAME}</strong>
-            <hr>
-            Station: ${feature.properties.STAT_NAME}`)
+            layer.bindPopup(`<strong>${feature.properties.NAME}</strong>`)
         },
         pointToLayer: (geoJsonPoint, latlng) => {
             return L.marker(latlng, {

@@ -144,7 +144,7 @@ const COLORS = {
         col: "#8788ee"
     }, {
         min: 90,
-        max: 100,
+        max: 101,
         col: "#7677e1"
     }]
 };

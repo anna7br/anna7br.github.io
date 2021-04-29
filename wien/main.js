@@ -75,7 +75,7 @@ let drawBusLine = (geojsonData) => {
             Station: ${feature.properties.LINE_NAME}`)
         },
         attribution:'<a href="https://data.wien.gv.at">Stadt Wien</a>, <a href="https://mapicons.mapsmarker.com/">Maps Icons Collection</a>'
-    }).addTo(overlays.buslines);
+    }).addTo(overlays.busLines);
 }
 
 /*fetch("data/TOURISTIKHTSVSLOGD.json")

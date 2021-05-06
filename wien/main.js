@@ -150,3 +150,6 @@ L.control.scale({
     imperial: false
 }
 ).addTo(map);
+
+// leaflet hash
+var hash = new L.Hash(map);

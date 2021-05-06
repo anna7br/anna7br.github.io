@@ -67,7 +67,7 @@ let drawBusStop = (geojsonData) => {
                 })
             })
         },
-        attribution:'<a href="https://data.wien.gv.at">Stadt Wien</a>'
+        attribution: '<a href="https://data.wien.gv.at">Stadt Wien</a>'
     }).addTo(overlays.busStops);
 }
 
@@ -86,7 +86,7 @@ let drawBusLines = (geojsonData) => {
             von ${feature.properties.FROM_NAME}<br>
             nach ${feature.properties.TO_NAME}`)
         },
-        attribution:'<a href="https://data.wien.gv.at">Stadt Wien</a>'
+        attribution: '<a href="https://data.wien.gv.at">Stadt Wien</a>'
     }).addTo(overlays.busLines);
 }
 
@@ -108,7 +108,7 @@ let drawPedestrianAreas = (geojsonData) => {
             ${feature.properties.AUSN_TEXT}
             `);
         },
-        attribution:'<a href="https://data.wien.gv.at">Stadt Wien</a>'
+        attribution: '<a href="https://data.wien.gv.at">Stadt Wien</a>'
     }).addTo(overlays.pedAreas);
 }
 
@@ -125,7 +125,7 @@ let drawSights = (geojsonData) => {
                 })
             })
         },
-        attribution:'<a href="https://data.wien.gv.at">Stadt Wien</a>'
+        attribution: '<a href="https://data.wien.gv.at">Stadt Wien</a>'
     }).addTo(overlays.sights);
 }
 
@@ -149,8 +149,7 @@ for (let config of OGDWIEN) {
 
 L.control.scale({
     imperial: false
-}
-).addTo(map);
+}).addTo(map);
 
 // leaflet hash plugin
 L.hash(map);
@@ -166,5 +165,30 @@ var miniMap = new L.Control.MiniMap(
 // leaflet reachability plugin
 L.control.reachability({
     // add settings/options here
-    apiKey: '5b3ce3597851110001cf6248611d5f90b4624d22ada03930eb34ede1'
+    apiKey: '5b3ce3597851110001cf6248611d5f90b4624d22ada03930eb34ede1',
+    styleFn: styleIsolines,
+    mouseOverFn: highlightIsolines,
+    mouseOutFn: resetIsolines,
+    clickFn: clickIsolines,
+    markerFn: isolinesOrigin,
+    expandButtonContent: '',
+    expandButtonStyleClass: 'reachability-control-expand-button fa fa-bullseye',
+    collapseButtonContent: '',
+    collapseButtonStyleClass: 'reachability-control-collapse-button fa fa-caret-up',
+    drawButtonContent: '',
+    drawButtonStyleClass: 'fa fa-pencil',
+    deleteButtonContent: '',
+    deleteButtonStyleClass: 'fa fa-trash',
+    distanceButtonContent: '',
+    distanceButtonStyleClass: 'fa fa-road',
+    timeButtonContent: '',
+    timeButtonStyleClass: 'fa fa-clock-o',
+    travelModeButton1Content: '',
+    travelModeButton1StyleClass: 'fa fa-car',
+    travelModeButton2Content: '',
+    travelModeButton2StyleClass: 'fa fa-bicycle',
+    travelModeButton3Content: '',
+    travelModeButton3StyleClass: 'fa fa-male',
+    travelModeButton4Content: '',
+    travelModeButton4StyleClass: 'fa fa-wheelchair-alt'
 }).addTo(map);

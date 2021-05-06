@@ -153,6 +153,6 @@ L.control.scale({
 ).addTo(map);
 
 // leaflet hash
-L.Hash(map);
+L.hash(map);
 
 // leaflet

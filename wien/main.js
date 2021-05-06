@@ -166,23 +166,14 @@ var miniMap = new L.Control.MiniMap(
 L.control.reachability({
     // add settings/options here
     apiKey: '5b3ce3597851110001cf6248611d5f90b4624d22ada03930eb34ede1',
-    styleFn: styleIsolines,
-    mouseOverFn: highlightIsolines,
-    mouseOutFn: resetIsolines,
-    clickFn: clickIsolines,
-    markerFn: isolinesOrigin,
-    expandButtonContent: '',
-    expandButtonStyleClass: 'reachability-control-expand-button fa fa-bullseye',
-    collapseButtonContent: '',
-    collapseButtonStyleClass: 'reachability-control-collapse-button fa fa-caret-up',
     drawButtonContent: '',
-    drawButtonStyleClass: 'fa fa-pencil',
+    drawButtonStyleClass: 'fa fa-pencil-alt',
     deleteButtonContent: '',
     deleteButtonStyleClass: 'fa fa-trash',
     distanceButtonContent: '',
     distanceButtonStyleClass: 'fa fa-road',
     timeButtonContent: '',
-    timeButtonStyleClass: 'fa fa-clock-o',
+    timeButtonStyleClass: 'fa fa-clock',
     travelModeButton1Content: '',
     travelModeButton1StyleClass: 'fa fa-car',
     travelModeButton2Content: '',
@@ -190,5 +181,5 @@ L.control.reachability({
     travelModeButton3Content: '',
     travelModeButton3StyleClass: 'fa fa-male',
     travelModeButton4Content: '',
-    travelModeButton4StyleClass: 'fa fa-wheelchair-alt'
+    travelModeButton4StyleClass: 'fa fa-wheelchair'
 }).addTo(map);

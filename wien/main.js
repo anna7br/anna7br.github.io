@@ -152,12 +152,19 @@ L.control.scale({
 }
 ).addTo(map);
 
-// leaflet hash
+// leaflet hash plugin
 L.hash(map);
 
-// leaflet minimap
+// leaflet minimap plugin
 var miniMap = new L.Control.MiniMap(
     L.tileLayer.provider("BasemapAT.basemap"), {
         toggleDisplay: true,
         minimized: true
     }).addTo(map);
+
+
+// leaflet reachability plugin
+L.control.reachability({
+    // add settings/options here
+    apiKey: '5b3ce3597851110001cf6248611d5f90b4624d22ada03930eb34ede1'
+}).addTo(map);

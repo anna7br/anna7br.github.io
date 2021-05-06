@@ -8,12 +8,21 @@ let stop = {
 };
 
 const map = L.map("map", {
+    fullscreenControl: true,
     center: [stop.lat, stop.lng],
     zoom: [13],
     layers: [
         L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png")
     ]
 });
+
+// Minimap
+var miniMap = new L.Control.MiniMap(
+  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"), {
+      toggleDisplay: true,
+      minimized: false
+  }
+).addTo(map);
 
 
 let nav = document.querySelector('#navigation');
@@ -54,4 +63,3 @@ nav.onchange = (evt) => {
 
 console.log(document.querySelector("#map"));
 
-//            <option value="anna7br">Moeraki_Boulders</option>

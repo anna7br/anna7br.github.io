@@ -195,7 +195,6 @@ let rainviewer = L.control.rainviewer({
 rainviewer.addTo(map);
 
 // Minimap
-// Minimap
 var miniMap = new L.Control.MiniMap(
     L.tileLayer.provider("BasemapAT.basemap"), {
         toggleDisplay: true,

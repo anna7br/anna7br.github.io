@@ -180,7 +180,7 @@ fetch(awsUrl)
         map.fitBounds(overlays.stations.getBounds());
     });
 
-//Rain Plugin
+// Rain Plugin
 // Change default options
 let rainviewer = L.control.rainviewer({
     position: 'bottomleft',
@@ -193,3 +193,12 @@ let rainviewer = L.control.rainviewer({
     opacity: 0.5
 });
 rainviewer.addTo(map);
+
+// Minimap
+// Minimap
+var miniMap = new L.Control.MiniMap(
+    L.tileLayer.provider("BasemapAT.basemap"), {
+        toggleDisplay: true,
+        minimized: false
+    }
+).addTo(map);

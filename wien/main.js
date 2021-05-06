@@ -11,7 +11,6 @@ let baselayers = {
         L.tileLayer.provider("BasemapAT.orthofoto"),
         L.tileLayer.provider("BasemapAT.overlay"),
     ]),
-    minimap: L.tileLayer.provider("BasemapAT.basemap",{minZoom: 0, maxZoom: 13})
 };
 
 // Overlays für die Themen zum Ein- und Ausschalten definieren
@@ -157,4 +156,8 @@ L.control.scale({
 L.hash(map);
 
 // leaflet minimap
-var miniMap = new L.Control.MiniMap(baselayers.minimap).addTo(map);
+var miniMap = new L.Control.MiniMap(
+    L.tileLayer.provider("BasemapAT.basemap"), {
+        toggleDisplay: true,
+        minimized: true
+    }).addTo(map);

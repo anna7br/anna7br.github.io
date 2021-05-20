@@ -57,7 +57,7 @@ const drawTrack = (nr) => {
             startIconUrl: `icons/number_${nr}.png`,
             endIconUrl: `icons/finish.png`,
             shadowUrl: null,
-          },
+        },
         polyline_options: {
             color: 'black',
             dashArray: [2, 5],
@@ -66,8 +66,8 @@ const drawTrack = (nr) => {
     gpxTrack.on("loaded", () => {
         console.log('loaded gpx');
         map.fitBounds(gpxTrack.getBounds());
-   
-    console.log('Track name: ', gpxTrack.get_distance());
+
+        console.log('Track name: ', gpxTrack.get_distance());
         gpxTrack.bindPopup(`
         <h3>${gpxTrack.get_name()}</h3>
         <ul>
@@ -79,9 +79,26 @@ const drawTrack = (nr) => {
         </ul>
         `);
     });
-elevationControl.load(`tracks/${nr}.gpx`);
+    elevationControl.load(`tracks/${nr}.gpx`);
 };
 
 
 const selectedTrack = 9;
 drawTrack(selectedTrack);
+
+console.log("biketirol.json ", BIKETIROL);
+let pulldown = document.querySelector("#pulldown");
+console.log('Pulldown: ', pulldown);
+let selected = '';
+for (let track of BIKETIROL) {
+    if (selectedTrack == track.nr) {
+        selected = 'selected';
+    } else {
+        selected = '';
+    }
+    pulldown.innerHTML += `<option value="${selected}">${track.nr}: ${track.etappe}</option>`;
+}
+
+pulldown.onchange = () => {
+    console.log('changed!!!!!', pulldown.value);
+};

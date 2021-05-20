@@ -51,6 +51,8 @@ const elevationControl = L.control.elevation({
 
 const drawTrack = (nr) => {
     // console.log('Track: ', nr);
+    elevationControl.clear();
+    overlays.tracks.clearLayers();
     let gpxTrack = new L.GPX(`tracks/${nr}.gpx`, {
         async: true,
         marker_options: {
@@ -64,10 +66,9 @@ const drawTrack = (nr) => {
         },
     }).addTo(overlays.tracks);
     gpxTrack.on("loaded", () => {
-        console.log('loaded gpx');
+        // console.log('loaded gpx');
         map.fitBounds(gpxTrack.getBounds());
-
-        console.log('Track name: ', gpxTrack.get_distance());
+        // console.log('Track name: ', gpxTrack.get_distance());
         gpxTrack.bindPopup(`
         <h3>${gpxTrack.get_name()}</h3>
         <ul>
@@ -81,7 +82,6 @@ const drawTrack = (nr) => {
     });
     elevationControl.load(`tracks/${nr}.gpx`);
 };
-
 
 const selectedTrack = 9;
 drawTrack(selectedTrack);

@@ -86,7 +86,7 @@ const drawTrack = (nr) => {
 const selectedTrack = 9;
 drawTrack(selectedTrack);
 
-console.log("biketirol.json ", BIKETIROL);
+console.log('biketirol json: ', BIKETIROL);
 let pulldown = document.querySelector("#pulldown");
 console.log('Pulldown: ', pulldown);
 let selected = '';
@@ -96,9 +96,10 @@ for (let track of BIKETIROL) {
     } else {
         selected = '';
     }
-    pulldown.innerHTML += `<option value="${selected}">${track.nr}: ${track.etappe}</option>`;
+    pulldown.innerHTML += `<option ${selected} value="${track.nr}">${track.nr}: ${track.etappe}</option>`;
 }
 
 pulldown.onchange = () => {
     console.log('changed!!!!!', pulldown.value);
+    drawTrack(pulldown.value);
 };

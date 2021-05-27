@@ -62,6 +62,11 @@ const drawWikipedia = (bounds) => {
         response => response.json()
     ).then(jsonData => {
         console.log(jsonData)
+        // Marker für Artikel erzeugen
+        for (let article of jsonData.geonames) {
+            let mrk = L.marker([article.lat, article.lng]);
+            mrk.addTo(overlays.wikipedia);
+        }
     });
 };
 

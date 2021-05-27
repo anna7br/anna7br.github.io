@@ -175,6 +175,7 @@ const updateTexts = (nr) => {
         // ist das die aktuelle Etappe?
         if (etappe.nr == nr) {
             console.log("unsere Etappe", etappe);
+            etappe.homepage = `<a href="${etappe.weblink}">Homepage</a>`;
             for (let key in etappe) {
                 console.log("key:", key, "value:", etappe[key]);
                 // gibt es ein Element in HTML mit der ID von "key"

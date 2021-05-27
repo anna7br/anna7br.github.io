@@ -174,3 +174,9 @@ pulldown.onchange = () => {
     console.log('changed!!!!!', pulldown.value);
     drawTrack(pulldown.value);
 };
+
+
+map.on("zoomend moveend", () => {
+    // Wikipedia Artikel zeichnen
+    drawWikipedia(map.getBounds());
+});

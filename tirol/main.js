@@ -52,6 +52,11 @@ const elevationControl = L.control.elevation({
     theme: 'lime-theme',
 }).addTo(map);
 
+// Wikipedia-Artikel zeichnen
+const drawWikipedia = (bounds) => {
+    console.log(bounds);
+}
+
 const drawTrack = (nr) => {
     // console.log('Track: ', nr);
     elevationControl.clear();
@@ -82,6 +87,8 @@ const drawTrack = (nr) => {
             <li>Höhenmeter bergab: ${Math.round(gpxTrack.get_elevation_loss())} m</li>
         </ul>
         `);
+        // Wikipedia-Artikel zeichnen
+        drawWikipedia(gpxTrack.getBounds());
     });
     elevationControl.load(`tracks/${nr}.gpx`);
 };

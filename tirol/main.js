@@ -175,6 +175,9 @@ const updateTexts = (nr) => {
         // ist das die aktuelle Etappe?
         if (etappe.nr == nr) {
             console.log("unsere Etappe", etappe);
+            for (let key in etappe) {
+                console.log("key:", key, "value:", etappe[key]);
+            }
         }
     }
 };

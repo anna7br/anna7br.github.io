@@ -14,7 +14,7 @@ let map = L.map("map", {
 L.Control.Watermark = L.Control.extend({
     onAdd: function (map) {
         var img = L.DomUtil.create('img');
-        img.src = 'pics/POW_AT_lang_blue.png';
+        img.src = 'POW_AT_lang_blue.png';
         img.style.width = '100px';
         return img;
     },
@@ -61,7 +61,8 @@ let overlays = {
     sbg: L.featureGroup(),
     stmk: L.featureGroup(),
     tir: L.featureGroup(),
-    vbg: L.featureGroup()
+    vbg: L.featureGroup(),
+    hike: L.featureGroup()
 };
 
 // Overlays zur Layer-Control hinzufügen
@@ -73,7 +74,8 @@ let layerControl = L.control.layers({
     "Salzburg": overlays.sbg,
     "Steiermark": overlays.stmk,
     "Tirol": overlays.tir,
-    "Vorarlberg": overlays.vbg
+    "Vorarlberg": overlays.vbg,
+    "Wandern":overlays.wandern
 })
 .addTo(map);
 overlays.at.addTo(map);
@@ -194,6 +196,49 @@ var marker = (function () {
         }
     }
 })();
+
+// create custom hiker icon
+var hiker = L.icon({
+    iconUrl: 'hiking-solid.svg',
+    iconSize: [20, 20], // size of the icon
+    iconAnchor: [10, 10], // point of the icon which will correspond to marker's location
+    popupAnchor: [0, 0] // point from which the popup should open relative to the iconAnchor
+});
+
+// Für jeden Eintrag in wanderungen.js werden Marker erzeugt und zum Layer overlays.at ("ganz Österreich") hinzugefügt
+var marker = (function () {
+    for (let index = 0; index < WANDERUNGEN.length; index++) {
+        let marker = L.marker([WANDERUNGEN[index].lat, WANDERUNGEN[index].lon], {
+            icon: hiker
+        })
+        marker.bindPopup(`
+            <h2>${WANDERUNGEN[index].name}</h2>
+            <p>${WANDERUNGEN[index].bundesland}</p>
+            <p>${WANDERUNGEN[index].info || ''}</p>
+            <p><a href=${WANDERUNGEN[index].link}><i class="fas fa-link"></i>Zur Website</a></p>
+            <p><a href=${WANDERUNGEN[index].scotty}><i class="fas fa-link"></i>Nächste Verbindung suchen</a></p>
+            `)
+            .addTo(overlays.at)
+            .addTo(overlays.wandern)
+        // Mit den nachfolgenden if-Abfragen wird für jedes Bundesland noch ein eigener Layer angelegt
+        if (SKIGEBIETE[index].bundeslandId == "tir") {
+            let marker = L.marker([WANDERUNGEN[index].lat, WANDERUNGEN[index].lon], {
+                icon: hiker
+            })
+            marker.bindPopup(`
+                <h2>${WANDERUNGEN[index].name}</h2>
+                <p>${WANDERUNGEN[index].bundesland}</p>
+                <p>${WANDERUNGEN[index].info || ''}</p>
+                <p><a href=${WANDERUNGEN[index].link}><i class="fas fa-link"></i>Zur Website</a></p>
+                <p><a href=${WANDERUNGEN[index].scotty}><i class="fas fa-link"></i>Nächste Verbindung suchen</a></p>
+                `);
+            marker.addTo(overlays.tir);
+        }
+    }
+})();
+
+
+// PLUGINS //
 
 // Minimap
 let miniMap = new L.Control.MiniMap(

@@ -1,12 +1,19 @@
 // Kartenscript
 
+
 // Karte initialisieren und auf Österreichs Mittelpunkt blicken
 let map = L.map("map", {
     fullscreenControl: true,
     center: [47.71216, 13.34290],
     zoom: 7,
     layers: [
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png')
+        L.tileLayer('https://api.mapbox.com/styles/v1/hanna8br/ckr3mc3gnes5h18mkuzxtvxwn/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiaGFubmE4YnIiLCJhIjoiY2tpYWNudXViMGhscDJ5cmtxOTliZDl0NSJ9.KIYizFkjQ7ODuRfxwFBEtg', {
+            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+            maxZoom: 18,
+            tileSize: 512,
+            zoomOffset: -1,
+        })
+        //L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png')
     ]
 });
 
@@ -67,17 +74,17 @@ let overlays = {
 
 // Overlays zur Layer-Control hinzufügen
 let layerControl = L.control.layers({
-    "ganz Österreich": overlays.at,
-    "Kärnten": overlays.ktn,
-    "Niederösterreich": overlays.noe,
-    "Oberösterreich": overlays.ooe,
-    "Salzburg": overlays.sbg,
-    "Steiermark": overlays.stmk,
-    "Tirol": overlays.tir,
-    "Vorarlberg": overlays.vbg,
-    "Wandern":overlays.wandern
-})
-.addTo(map);
+        "ganz Österreich": overlays.at,
+        "Kärnten": overlays.ktn,
+        "Niederösterreich": overlays.noe,
+        "Oberösterreich": overlays.ooe,
+        "Salzburg": overlays.sbg,
+        "Steiermark": overlays.stmk,
+        "Tirol": overlays.tir,
+        "Vorarlberg": overlays.vbg,
+        "Wandern": overlays.hike
+    })
+    .addTo(map);
 overlays.at.addTo(map);
 
 // create custom snowflake icon
@@ -219,7 +226,7 @@ var marker = (function () {
             <p><a href=${WANDERUNGEN[index].scotty}><i class="fas fa-link"></i>Nächste Verbindung suchen</a></p>
             `)
             .addTo(overlays.at)
-            .addTo(overlays.wandern)
+            .addTo(overlays.hike)
         // Mit den nachfolgenden if-Abfragen wird für jedes Bundesland noch ein eigener Layer angelegt
         if (SKIGEBIETE[index].bundeslandId == "tir") {
             let marker = L.marker([WANDERUNGEN[index].lat, WANDERUNGEN[index].lon], {

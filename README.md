@@ -6,21 +6,29 @@ so the list stays current on its own.
 
 ## Files
 
+Clean URLs: each page (except the home page) lives in its own folder as
+`index.html`, so it is served without a `.html` suffix — e.g. `/publications`.
+
 ```
-personal-website/
-├── index.html          About (education, experience, skills)
-├── research.html       Projects (MELT.AI, STRATIFY, CADS, DEB[:RIS:]K)
-├── publications.html   Live ORCID publication list
-├── talks.html          Talks & poster presentations
-├── awards.html         Awards, grants & media coverage
-├── beyond.html         Volunteering, öffi Touren, mountains
-├── .nojekyll           tells GitHub Pages to serve files as-is
+anna7br.github.io/
+├── index.html               →  /                About (education, experience, skills)
+├── research/index.html      →  /research        Projects (MELT.AI, STRATIFY, CADS, DEB[:RIS:]K)
+├── publications/index.html  →  /publications    Live ORCID publication list
+├── talks/index.html         →  /talks           Talks & poster presentations
+├── awards/index.html        →  /awards          Awards, grants & media coverage
+├── beyond/index.html        →  /beyond          Volunteering, öffi Touren, mountains
+├── .nojekyll                tells GitHub Pages to serve files as-is
 └── assets/
     ├── css/style.css
-    ├── js/site.js          ← edit this to change links, photo, ORCID
+    ├── js/site.js           ← edit this to change links, photo, ORCID
     ├── js/publications.js
-    └── img/profile.jpg     ← add your profile photo here (see below)
+    └── img/profile.jpeg     your profile photo
 ```
+
+Asset and nav links use root-absolute paths (starting with `/`) so they resolve
+correctly from any page depth. To preview locally, use VS Code's **Live Server**
+opened on this folder (not a `file://` double-click, which doesn't understand the
+root-absolute paths or the folder-based clean URLs).
 
 ## 1. Add your profile photo
 

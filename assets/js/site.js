@@ -13,8 +13,9 @@ const SITE = {
 
   // --- profile photo ---
   // Put a photo at assets/img/ (any name) and set the path here.
+  // Root-absolute (starts with /) so it resolves from any page depth.
   // Leave photo = "" to show initials placeholder instead.
-  photo: "assets/img/profile.jpeg",
+  photo: "/assets/img/profile.jpeg",
   initials: "AS",
 
   // --- contact ---
@@ -38,12 +39,12 @@ const SITE = {
 
 /* ---------- navigation items ---------- */
 const NAV = [
-  { href: "index.html",        label: "About" },
-  { href: "research.html",     label: "Research" },
-  { href: "publications.html", label: "Publications" },
-  { href: "talks.html",        label: "Talks" },
-  { href: "awards.html",       label: "Awards & Media" },
-  { href: "beyond.html",       label: "Beyond Research" },
+  { href: "/",              label: "About" },
+  { href: "/research/",     label: "Research" },
+  { href: "/publications/", label: "Publications" },
+  { href: "/talks/",        label: "Talks" },
+  { href: "/awards/",       label: "Awards & Media" },
+  { href: "/beyond/",       label: "Beyond Research" },
 ];
 
 /* ---------- inline SVG icons ---------- */
@@ -93,9 +94,11 @@ function buildSidebar() {
 }
 
 function buildNav() {
-  const here = (location.pathname.split("/").pop() || "index.html").toLowerCase();
+  // Normalise current path to a clean, trailing-slash form: "/", "/research/", ...
+  let here = location.pathname.replace(/index\.html$/, "");
+  if (!here.endsWith("/")) here += "/";
   const links = NAV.map(n => {
-    const active = (n.href.toLowerCase() === here) ? " class=\"active\"" : "";
+    const active = (n.href === here) ? " class=\"active\"" : "";
     return `<a href="${n.href}"${active}>${n.label}</a>`;
   }).join("");
   return `

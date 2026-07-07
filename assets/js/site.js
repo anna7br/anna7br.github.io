@@ -29,10 +29,10 @@ const SITE = {
     // Set to "" to hide a link.
     linkedin:     "https://www.linkedin.com/in/anna-siebenbrunner/",
     orcidLink:    "https://orcid.org/0000-0002-2255-2354",
-    scholar:      "",   // TODO: paste your Google Scholar profile URL
+    scholar:      "https://scholar.google.com/citations?user=rKJoRMQAAAAJ&hl=en",
     researchgate: "https://www.researchgate.net/profile/Anna-Siebenbrunner",
-    bluesky:      "",   // TODO: paste your Bluesky profile URL (e.g. https://bsky.app/profile/you.bsky.social)
-    github:       "",   // TODO: paste your GitHub profile URL (e.g. https://github.com/anna7br)
+    bluesky:      "https://bsky.app/profile/anna7brunner.bsky.social",
+    github:       "https://github.com/anna7br",
   },
 };
 

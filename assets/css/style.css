@@ -179,14 +179,21 @@ main { min-width: 0; }
 }
 .card p { margin: 0 0 12px; }
 .card p:last-child { margin-bottom: 0; }
-.card .project-img {
-  width: 100%;
-  aspect-ratio: 16 / 9;
+.project-card { display: flex; gap: 22px; align-items: flex-start; }
+.project-card .project-img {
+  flex: 0 0 170px;
+  width: 170px;
+  aspect-ratio: 4 / 3;
   object-fit: cover;
   border-radius: 10px;
-  margin: 0 0 16px;
+  margin: 0;
   display: block;
   background: #eaf4fa;
+}
+.project-card .project-body { flex: 1 1 auto; min-width: 0; }
+@media (max-width: 560px) {
+  .project-card { flex-direction: column; gap: 14px; }
+  .project-card .project-img { width: 100%; flex-basis: auto; aspect-ratio: 16 / 9; }
 }
 
 /* small footnote (e.g. ORCID note on publications page) */

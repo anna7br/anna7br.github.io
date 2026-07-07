@@ -19,15 +19,12 @@ const SITE = {
   initials: "AS",
 
   // --- contact ---
-  // Email is stored base64-encoded and only assembled by JavaScript at runtime,
-  // so it does NOT appear as plain text in the page source (basic anti-scraping).
-  // To change it: base64-encode the new address and paste it here.
+  // Email is base64-encoded and only assembled by JS at runtime (basic anti-scraping).
   emailB64: "YW5uYS5zaWViZW5icnVubmVyQGdtYWlsLmNvbQ==",
 
   orcid: "0000-0002-2255-2354",
 
   links: {
-    // Set to "" to hide a link.
     linkedin:     "https://www.linkedin.com/in/anna-siebenbrunner/",
     orcidLink:    "https://orcid.org/0000-0002-2255-2354",
     scholar:      "https://scholar.google.com/citations?user=rKJoRMQAAAAJ&hl=en",
@@ -63,7 +60,6 @@ const ICON = {
 function buildSidebar() {
   const l = SITE.links;
   const socials = [];
-  // Email: decode base64 at runtime and set href without exposing plain text in source.
   const email = (() => { try { return atob(SITE.emailB64); } catch (e) { return ""; } })();
   if (email) socials.push(`<a href="mailto:${email}" title="Email" aria-label="Email">${ICON.mail}</a>`);
   if (l.linkedin)     socials.push(`<a href="${l.linkedin}" target="_blank" rel="noopener" title="LinkedIn" aria-label="LinkedIn">${ICON.linkedin}</a>`);
@@ -93,7 +89,6 @@ function buildSidebar() {
 }
 
 function buildNav() {
-  // Normalise current path to a clean, trailing-slash form: "/", "/research/", ...
   let here = location.pathname.replace(/index\.html$/, "");
   if (!here.endsWith("/")) here += "/";
   const links = NAV.map(n => {

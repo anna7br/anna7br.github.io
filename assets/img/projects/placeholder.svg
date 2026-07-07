@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" role="img" aria-label="Project image placeholder">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#dcecf5"/>
+      <stop offset="1" stop-color="#b9d8ea"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="450" fill="url(#sky)"/>
+  <!-- distant glacier ridge -->
+  <path d="M0 330 L150 250 L280 300 L430 210 L560 285 L690 235 L800 290 L800 450 L0 450 Z" fill="#eaf4fa"/>
+  <path d="M0 360 L120 300 L250 345 L380 275 L520 340 L660 295 L800 345 L800 450 L0 450 Z" fill="#ffffff" opacity="0.75"/>
+  <!-- foreground peak -->
+  <path d="M0 450 L230 250 L360 330 L470 260 L620 380 L800 300 L800 450 Z" fill="#9cc3da"/>
+  <text x="400" y="415" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="22" fill="#2f6f9e" opacity="0.75">Project image – coming soon</text>
+</svg>

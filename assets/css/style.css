@@ -1,5 +1,5 @@
 /* =========================================================
-   Anna Siebenbrunner — personal website
+   Anna Siebenbrunner – personal website
    Minimalist, photo-forward. Restrained alpine-blue accent.
    ========================================================= */
 
@@ -165,7 +165,7 @@ main { min-width: 0; }
 .page-title { font-size: 2.1rem; font-weight: 600; letter-spacing: -0.02em; color: var(--ink); margin: 0 0 14px; }
 .page-intro { color: var(--ink-soft); font-size: 1.08rem; max-width: 64ch; margin: 0 0 44px; }
 
-/* ---------- Entries (was .card) — hairline separated ---------- */
+/* ---------- Entries (was .card) – hairline separated ---------- */
 .card {
   padding: 0 0 26px;
   margin: 0 0 26px;
@@ -179,6 +179,19 @@ main { min-width: 0; }
 }
 .card p { margin: 0 0 12px; }
 .card p:last-child { margin-bottom: 0; }
+.card .project-img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 10px;
+  margin: 0 0 16px;
+  display: block;
+  background: #eaf4fa;
+}
+
+/* small footnote (e.g. ORCID note on publications page) */
+.note { font-size: .82rem; color: var(--faint); margin-top: 44px; max-width: 72ch; }
+.note a { color: var(--ink-soft); }
 
 .grid-2 { display: grid; grid-template-columns: 1fr; gap: 0; }
 
@@ -239,6 +252,9 @@ main { min-width: 0; }
 .media-list .m-title { font-weight: 500; color: var(--ink); }
 a.m-title:hover { color: var(--accent); text-decoration: underline; }
 .media-list .m-outlet { color: var(--faint); font-size: .9rem; }
+.media-list li.has-embed { flex-direction: column; align-items: stretch; }
+.media-list .media-row { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; width: 100%; }
+.spotify-embed { margin-top: 12px; max-width: 560px; border: 0; }
 
 footer.site {
   max-width: var(--maxw);

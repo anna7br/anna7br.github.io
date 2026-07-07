@@ -1,4 +1,4 @@
-# Anna Siebenbrunner — personal website
+# Anna Siebenbrunner – personal website
 
 A static, mobile-friendly site for **https://anna7br.github.io/**.
 Publications are pulled **live** from ORCID (and enriched with authors from Crossref),
@@ -7,7 +7,7 @@ so the list stays current on its own.
 ## Files
 
 Clean URLs: each page (except the home page) lives in its own folder as
-`index.html`, so it is served without a `.html` suffix — e.g. `/publications`.
+`index.html`, so it is served without a `.html` suffix – e.g. `/publications`.
 
 ```
 anna7br.github.io/
@@ -49,10 +49,10 @@ Leave any link as `""` to hide its icon. LinkedIn, ORCID and ResearchGate are al
 
 ## 3. Publish on GitHub Pages
 
-Your site lives at `https://anna7br.github.io/`, which is a **user site** — it must be
+Your site lives at `https://anna7br.github.io/`, which is a **user site** – it must be
 served from a repository named exactly **`anna7br.github.io`**.
 
-**Option A — GitHub website (no command line):**
+**Option A – GitHub website (no command line):**
 1. Create a repository named `anna7br.github.io` (owner: `anna7br`).
 2. Upload the *contents* of this `personal-website` folder (the `.html` files and the
    `assets/` folder must be at the repository root, not inside a sub-folder).
@@ -60,7 +60,7 @@ served from a repository named exactly **`anna7br.github.io`**.
    branch **`main`**, folder **`/ (root)`**, then **Save**.
 4. Wait ~1 minute, then open **https://anna7br.github.io/**.
 
-**Option B — command line (git):**
+**Option B – command line (git):**
 ```bash
 cd path/to/personal-website
 git init
@@ -70,17 +70,4 @@ git branch -M main
 git remote add origin https://github.com/anna7br/anna7br.github.io.git
 git push -u origin main
 ```
-Then enable Pages as in Option A, step 3.
-
-## Updating content later
-
-- **Publications** update themselves from ORCID — nothing to do.
-- **Talks / awards / projects** are plain HTML: edit the relevant `.html` file.
-- **Links / photo / ORCID iD**: edit `assets/js/site.js`.
-
-## Notes
-
-- Your email is stored base64-encoded in `site.js` and only assembled by JavaScript at
-  runtime, so it does not appear as plain text in the page source (basic anti-scraping).
-- ORCID often omits conference proceedings and theses, so the live list may be shorter
-  than your full CV. Those extra items are covered on the Talks page.
+Then enable Pages as in Optio

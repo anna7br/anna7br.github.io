@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" role="img" aria-label="Cycling placeholder">
+  <rect width="400" height="300" fill="#dcecf5"/>
+  <g fill="none" stroke="#33506a" stroke-width="8" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="118" cy="205" r="46"/>
+    <circle cx="292" cy="205" r="46"/>
+    <path d="M118 205 L196 205 L168 132 Z"/>
+    <path d="M196 205 L252 130 L292 205"/>
+    <path d="M168 132 L252 130"/>
+    <line x1="150" y1="130" x2="184" y2="130"/>
+    <line x1="246" y1="120" x2="270" y2="128"/>
+  </g>
+  <circle cx="196" cy="205" r="7" fill="#8fc4de"/>
+</svg>

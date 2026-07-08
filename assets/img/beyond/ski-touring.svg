@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" role="img" aria-label="Ski touring placeholder">
+  <rect width="400" height="300" fill="#dcecf5"/>
+  <path d="M0 235 L110 95 L165 160 L245 75 L330 165 L400 235 Z" fill="#33506a"/>
+  <path d="M245 75 l7 10 l-5 2 l-3 -3 l-3 4 z" fill="#f2f8fc"/>
+  <path d="M110 95 l6 9 l-4 2 l-3 -3 z" fill="#f2f8fc"/>
+  <path d="M70 252 L150 216 L100 180 L182 144 L132 110" fill="none" stroke="#ffffff" stroke-width="5" stroke-dasharray="1 12" stroke-linecap="round" opacity="0.92"/>
+</svg>

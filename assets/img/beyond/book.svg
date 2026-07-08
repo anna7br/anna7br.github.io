@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" role="img" aria-label="Guidebook placeholder">
+  <rect width="400" height="300" fill="#dcecf5"/>
+  <g transform="rotate(-4 200 150)">
+    <rect x="148" y="56" width="114" height="180" rx="8" fill="#33506a"/>
+    <rect x="148" y="56" width="16" height="180" rx="3" fill="#26405a"/>
+    <path d="M182 170 L206 118 L221 144 L240 106 L257 170 Z" fill="#8fc4de"/>
+    <circle cx="240" cy="103" r="5" fill="#f2f8fc"/>
+    <rect x="182" y="188" width="66" height="7" rx="3.5" fill="#cfe3f0"/>
+    <rect x="190" y="202" width="50" height="5" rx="2.5" fill="#9fc3d9"/>
+  </g>
+</svg>

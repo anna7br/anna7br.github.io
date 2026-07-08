@@ -1,7 +1,8 @@
 /* Talks & Presentations from /assets/data/talks.csv
    Columns: category,title,event,location,date
    category = "Talk" (Conference Talks) or "Poster" (Poster Presentations)
-   To add one: open the CSV in Excel, add a row (newest at the top), save, commit. */
+   Entries are sorted automatically by date (newest first) — you can list rows
+   in any order. Dates are free text (e.g. "30 Apr 2025", "26–27 Feb 2026", "2024"). */
 function parseCSV(text){
   const rows=[]; let i=0, field="", row=[], inQ=false;
   text=text.replace(/\r\n?/g,"\n");
@@ -20,6 +21,19 @@ function parseCSV(text){
   return rows.filter(r=>r.some(x=>x.trim()!==""));
 }
 function escT(s){return (s||"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+/* turn a human date string into a sortable number: year*10000 + month*100 + day */
+function dateKey(s){
+  s=(s||"").toLowerCase();
+  const ym=s.match(/\b(19|20)\d{2}\b/);
+  const year=ym?parseInt(ym[0],10):0;
+  const rest=s.replace(/\b(19|20)\d{2}\b/,"");
+  const months=["jan","feb","mar","apr","may","jun","jul","aug","sep","oct","nov","dec"];
+  let month=0;
+  for(let i=0;i<12;i++){ if(rest.includes(months[i])){ month=i+1; break; } }
+  const dm=rest.match(/\d{1,2}/);           // first day (handles ranges like "26–27")
+  const day=dm?parseInt(dm[0],10):0;
+  return year*10000 + month*100 + day;
+}
 async function loadTalks(){
   const el=document.getElementById("talks"); if(!el) return;
   try{
@@ -35,12 +49,13 @@ async function loadTalks(){
       location:(r[col("location")]||"").trim(),
       date:(r[col("date")]||"").trim(),
     })).filter(t=>t.title);
+    const byDateDesc=(a,b)=>dateKey(b.date)-dateKey(a.date);
     const card=t=>{
       const meta=[t.event,t.location,t.date].filter(Boolean).join(" · ");
       return `<div class="card">${meta?`<p class="card-meta">${escT(meta)}</p>`:""}<h4>${escT(t.title)}</h4></div>`;
     };
-    const talks=items.filter(t=>/talk/i.test(t.category));
-    const posters=items.filter(t=>/poster/i.test(t.category));
+    const talks=items.filter(t=>/talk/i.test(t.category)).sort(byDateDesc);
+    const posters=items.filter(t=>/poster/i.test(t.category)).sort(byDateDesc);
     let html="";
     if(talks.length)   html+=`<p class="lead">Conference Talks</p>`+talks.map(card).join("");
     if(posters.length) html+=`<p class="lead" style="margin-top:24px">Poster Presentations</p>`+posters.map(card).join("");

@@ -1,7 +1,8 @@
-category,title,event,location,date
-Talk,"Unveiling Hidden Heterogeneity: UAV-borne GPR for Investigating Alpine Snowpack Variability","EGU General Assembly","Vienna, Austria","30 Apr 2025"
-Talk,"Glacier Monitoring on the Fly: Quantifying Ice Volume and Analyzing Subglacial Topography with UAV-borne GPR","Alpine Glaciology Meeting","Innsbruck, Austria","27 Feb 2025"
-Talk,"UAV-borne GPR Snowpack Stratigraphy","International Snow Science Workshop","Bend, OR, USA","12 Oct 2023"
-Talk,"Exploring the Capabilities of UAV-based GPR for Detecting Weak Layers in Snowpacks","84th EAGE Annual Conference","Vienna, Austria","7 Jun 2023"
-Poster,"Closing the Ice-Thickness Data Gap: High-Resolution 3D Volumetric Measurements of Diverse Glacier Types Using UAV-borne GPR","Alpine Glaciology Meeting","Milan, Italy","26–27 Feb 2026"
-Poster,"Deep Learning for Real-Time Avalanche Detection in Webcam Images","International Snow Science Workshop","Bend, OR, USA","12 Oct 2023"
+category, title                                                                                                                        , event                                , location            , date
+Talk    , "Unveiling Hidden Heterogeneity: UAV-borne GPR for Investigating Alpine Snowpack Variability"                                , "EGU General Assembly 2025"               , "Vienna, Austria"   , "30 Apr 2025"
+Talk    , "Glacier Monitoring on the Fly: Quantifying Ice Volume and Analyzing Subglacial Topography with UAV-borne GPR"               , "Alpine Glaciology Meeting"          , "Innsbruck, Austria", "27 Feb 2025"
+Talk    , "UAV-borne GPR Snowpack Stratigraphy"                                                                                        , "International Snow Science Workshop", "Bend, OR, USA"     , "12 Oct 2023"
+Talk    , "Exploring the Capabilities of UAV-based GPR for Detecting Weak Layers in Snowpacks"                                         , "84th EAGE Annual Conference"        , "Vienna, Austria"   , "7 Jun 2023"
+Poster  , "Closing the Ice-Thickness Data Gap: High-Resolution 3D Volumetric Measurements of Diverse Glacier Types Using UAV-borne GPR", "Alpine Glaciology Meeting"          , "Milan, Italy"      , "26–27 Feb 2026"
+Poster  , "Deep Learning for Real-Time Avalanche Detection in Webcam Images"                                                           , "International Snow Science Workshop", "Bend, OR, USA"     , "12 Oct 2023"
+Talk    , "Towards a New Regional Ice Thickness Dataset: UAV-Borne GPR for Quantifying Remaining Ice Volumes of Alpine Glaciers"       , "EGU General Assembly 2026"               , "Vienna, Austria"   , "6 May 2026"

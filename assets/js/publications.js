@@ -46,6 +46,7 @@ async function crossrefByDoi(doi) {
       title: Array.isArray(m.title) ? m.title[0] : m.title,
       venue: Array.isArray(m["container-title"]) ? m["container-title"][0] : m["container-title"],
       volume: m.volume, page: m.page,
+      type: m.type, subtype: m.subtype,
     };
   } catch (e) {
     return null;
@@ -86,7 +87,7 @@ function parseOrcidSummary(group) {
   });
   if (s.url && s.url.value && !url) url = s.url.value;
 
-  return { title, journal, type, year, doi, url };
+  return { title, journal, type, year, doi, url, isPreprint: /preprint/i.test(type) };
 }
 
 function renderPublications(pubs) {
@@ -113,7 +114,7 @@ function renderPublications(pubs) {
       const venue = p.venue || p.journal || "";
       html += `
         <div class="pub-item">
-          <div class="pub-title">${escapeHtml(p.title)}</div>
+          <div class="pub-title">${escapeHtml(p.title)}${p.isPreprint ? ' <span class="pub-tag">[preprint]</span>' : ''}</div>
           ${authors ? `<div class="pub-authors">${authors}</div>` : ""}
           ${venue ? `<div class="pub-venue">${escapeHtml(venue)}</div>` : ""}
           ${links.length ? `<div class="pub-links">${links.join("")}</div>` : ""}
@@ -159,6 +160,7 @@ async function loadPublications() {
           p.venue = cr.venue || p.journal;
           if (cr.year) p.year = cr.year;
           if (cr.title) p.title = cr.title;
+          if (cr.type === "posted-content" || /preprint/i.test(cr.subtype || "")) p.isPreprint = true;
         }
       }
     }));

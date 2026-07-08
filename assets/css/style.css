@@ -14,6 +14,7 @@
   --maxw:       1120px;
   --sidebar-w:  260px;
   --font: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --display: "Syne", "Inter", sans-serif;
 }
 
 * { box-sizing: border-box; }
@@ -23,7 +24,14 @@ body {
   margin: 0;
   font-family: var(--font);
   color: var(--ink);
-  background: var(--bg);
+  background-color: var(--bg);
+  background-image:
+    linear-gradient(rgba(255,255,255,0.85), rgba(255,255,255,0.89)),
+    url("/assets/img/background/pattern.jpg");
+  background-size: cover;
+  background-position: center top;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
   font-size: 17px;
   line-height: 1.7;
   font-weight: 400;
@@ -136,33 +144,34 @@ em { color: var(--ink); }
 main { min-width: 0; }
 
 /* Simple intro (was the gradient hero) */
-.hero { margin: 0 0 48px; }
+.hero { margin: 0 0 44px; }
 .hero h2 {
+  font-family: var(--display);
   margin: 0 0 16px;
   font-size: 2.2rem;
-  font-weight: 600;
-  line-height: 1.2;
-  letter-spacing: -0.02em;
-  color: var(--ink);
-  max-width: 18ch;
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--accent-ink);
+  max-width: 20ch;
 }
-.hero p { margin: 0; font-size: 1.15rem; color: var(--ink-soft); max-width: 58ch; }
+.hero p { margin: 0; font-size: 1.15rem; color: var(--ink-soft); max-width: 60ch; }
 
 .section { margin-bottom: 52px; }
 .section > h3 {
-  font-size: .82rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: .1em;
-  color: var(--faint);
-  margin: 0 0 20px;
-  padding-bottom: 12px;
+  font-family: var(--display);
+  font-size: 1.3rem;
+  font-weight: 700;
+  text-transform: none;
+  letter-spacing: -0.01em;
+  color: var(--accent-ink);
+  margin: 0 0 18px;
+  padding-bottom: 10px;
   border-bottom: 1px solid var(--hairline);
 }
 .section > .lead { color: var(--ink-soft); font-size: .8rem; text-transform: uppercase; letter-spacing: .08em; margin: 0 0 8px; }
 .section p { margin: 0 0 16px; }
 
-.page-title { font-size: 2.1rem; font-weight: 600; letter-spacing: -0.02em; color: var(--ink); margin: 0 0 14px; }
+.page-title { font-family: var(--display); font-size: 2.2rem; font-weight: 700; letter-spacing: 0; color: var(--accent-ink); margin: 0 0 14px; }
 .page-intro { color: var(--ink-soft); font-size: 1.08rem; max-width: 64ch; margin: 0 0 44px; }
 
 /* ---------- Entries (was .card) – hairline separated ---------- */
@@ -200,6 +209,11 @@ main { min-width: 0; }
 .note { font-size: .82rem; color: var(--faint); margin-top: 44px; max-width: 72ch; }
 .note a { color: var(--ink-soft); }
 
+/* closing photo (bottom of home page) */
+.closing-photo { margin: 8px 0 0; }
+.closing-photo img { width: 100%; border-radius: 14px; box-shadow: 0 10px 34px rgba(18,50,79,0.16); }
+.closing-photo figcaption { font-size: .82rem; color: var(--faint); margin-top: 10px; text-align: center; }
+
 .grid-2 { display: grid; grid-template-columns: 1fr; gap: 0; }
 
 /* Timeline → clean list, no dots/line */
@@ -223,20 +237,21 @@ main { min-width: 0; }
 /* ---------- Publications ---------- */
 .pub-list { list-style: none; padding: 0; margin: 0; }
 .pub-item {
-  padding: 0 0 22px;
-  margin-bottom: 22px;
+  padding: 0 0 14px;
+  margin-bottom: 14px;
   border-bottom: 1px solid var(--hairline);
 }
 .pub-item:last-child { border-bottom: none; }
 .pub-item .pub-title { font-weight: 600; color: var(--ink); }
-.pub-item .pub-authors { font-size: .95rem; color: var(--ink-soft); margin: 5px 0; }
+.pub-item .pub-tag { color: var(--accent); font-weight: 600; font-size: .82em; }
+.pub-item .pub-authors { font-size: .95rem; color: var(--ink-soft); margin: 3px 0; }
 .pub-item .pub-authors .me { color: var(--ink); font-weight: 700; }
 .pub-item .pub-venue { font-size: .93rem; color: var(--ink-soft); font-style: italic; }
 .pub-item .pub-links { margin-top: 8px; font-size: .82rem; text-transform: uppercase; letter-spacing: .06em; display: flex; gap: 18px; flex-wrap: wrap; }
 .pub-year-group > .year {
   font-size: .95rem; font-weight: 700; color: var(--faint);
   letter-spacing: .06em;
-  margin: 34px 0 18px;
+  margin: 24px 0 12px;
 }
 .pub-year-group:first-child > .year { margin-top: 0; }
 .pub-status { color: var(--ink-soft); padding: 8px 0; }

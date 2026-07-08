@@ -6,7 +6,7 @@
   <title>Publications – Anna Siebenbrunner</title>
   <meta name="description" content="Peer-reviewed publications by Anna Siebenbrunner, loaded live from ORCID.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/css/style.css">
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 </head>
@@ -23,38 +23,13 @@
 
       <section class="section" style="margin-top:44px">
         <h3>Talks &amp; Presentations</h3>
-        <p class="lead">Conference Talks</p>
-        <div class="card">
-          <p class="card-meta">EGU General Assembly · Vienna, Austria · 30 Apr 2025</p>
-          <h4>Unveiling Hidden Heterogeneity: UAV-borne GPR for Investigating Alpine Snowpack Variability</h4>
-        </div>
-        <div class="card">
-          <p class="card-meta">Alpine Glaciology Meeting · Innsbruck, Austria · 27 Feb 2025</p>
-          <h4>Glacier Monitoring on the Fly: Quantifying Ice Volume and Analyzing Subglacial Topography with UAV-borne GPR</h4>
-        </div>
-        <div class="card">
-          <p class="card-meta">International Snow Science Workshop · Bend, OR, USA · 12 Oct 2023</p>
-          <h4>UAV-borne GPR Snowpack Stratigraphy</h4>
-        </div>
-        <div class="card">
-          <p class="card-meta">84th EAGE Annual Conference · Vienna, Austria · 7 Jun 2023</p>
-          <h4>Exploring the Capabilities of UAV-based GPR for Detecting Weak Layers in Snowpacks</h4>
-        </div>
-
-        <p class="lead" style="margin-top:24px">Poster Presentations</p>
-        <div class="card">
-          <p class="card-meta">Alpine Glaciology Meeting · Milan, Italy · 26–27 Feb 2026</p>
-          <h4>Closing the Ice-Thickness Data Gap: High-Resolution 3D Volumetric Measurements of Diverse Glacier Types Using UAV-borne GPR</h4>
-        </div>
-        <div class="card">
-          <p class="card-meta">International Snow Science Workshop · Bend, OR, USA · 12 Oct 2023</p>
-          <h4>Deep Learning for Real-Time Avalanche Detection in Webcam Images</h4>
-        </div>
+        <div id="talks"></div>
       </section>
 
       <p class="note">The publication list above is pulled live from my
         <a href="https://orcid.org/" target="_blank" rel="noopener" id="orcid-link">ORCID</a>
-        record and enriched with author details from Crossref, so it stays current automatically.</p>
+        record and enriched with author details from Crossref, so it stays current automatically.
+        Talks are maintained in <code>assets/data/talks.csv</code>.</p>
     </main>
   </div>
 
@@ -62,6 +37,7 @@
 
   <script src="/assets/js/site.js"></script>
   <script src="/assets/js/publications.js"></script>
+  <script src="/assets/js/talks.js"></script>
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       const a = document.getElementById("orcid-link");

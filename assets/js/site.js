@@ -61,13 +61,14 @@ function buildSidebar() {
   const l = SITE.links;
   const socials = [];
   const email = (() => { try { return atob(SITE.emailB64); } catch (e) { return ""; } })();
+  // order: Email, ORCID, Scholar, ResearchGate, GitHub, LinkedIn, Bluesky
   if (email) socials.push(`<a href="mailto:${email}" title="Email" aria-label="Email">${ICON.mail}</a>`);
-  if (l.linkedin)     socials.push(`<a href="${l.linkedin}" target="_blank" rel="noopener" title="LinkedIn" aria-label="LinkedIn">${ICON.linkedin}</a>`);
   socials.push(`<a href="${l.orcidLink || ("https://orcid.org/" + SITE.orcid)}" target="_blank" rel="noopener" title="ORCID" aria-label="ORCID">${ICON.orcid}</a>`);
   if (l.scholar)      socials.push(`<a href="${l.scholar}" target="_blank" rel="noopener" title="Google Scholar" aria-label="Google Scholar">${ICON.scholar}</a>`);
   if (l.researchgate) socials.push(`<a href="${l.researchgate}" target="_blank" rel="noopener" title="ResearchGate" aria-label="ResearchGate">${ICON.researchgate}</a>`);
-  if (l.bluesky)      socials.push(`<a href="${l.bluesky}" target="_blank" rel="noopener" title="Bluesky" aria-label="Bluesky">${ICON.bluesky}</a>`);
   if (l.github)       socials.push(`<a href="${l.github}" target="_blank" rel="noopener" title="GitHub" aria-label="GitHub">${ICON.github}</a>`);
+  if (l.linkedin)     socials.push(`<a href="${l.linkedin}" target="_blank" rel="noopener" title="LinkedIn" aria-label="LinkedIn">${ICON.linkedin}</a>`);
+  if (l.bluesky)      socials.push(`<a href="${l.bluesky}" target="_blank" rel="noopener" title="Bluesky" aria-label="Bluesky">${ICON.bluesky}</a>`);
 
   const avatar = SITE.photo
     ? `<img class="avatar" src="${SITE.photo}" alt="${SITE.name}" onerror="this.outerHTML='<div class=&quot;avatar-placeholder&quot;>${SITE.initials}</div>'">`

@@ -1,7 +1,9 @@
 /* =========================================================
-   Live publications from ORCID (+ Crossref author enrichment)
+   Live publications from ORCID (+ Crossref metadata enrichment)
    - Pulls the works list from the ORCID public API
-   - For entries with a DOI, fetches full author list from Crossref
+   - Uses the full ORCID contributor list for every paper's authors
+     (complete and reliable, even for works without a DOI)
+   - Crossref adds tidy venue/year/type metadata where a DOI exists
    - Groups by year, highlights "Siebenbrunner" in author lists
    Uses SITE.orcid from site.js
    ========================================================= */
@@ -29,7 +31,39 @@ async function fetchJSON(url, headers) {
   return res.json();
 }
 
-/* ---- Crossref: authors + tidy metadata for a DOI ---- */
+/* ---- Split a free-text name into {given, family} ----
+   Handles both "Anna Siebenbrunner" and "Siebenbrunner, Anna". */
+function splitName(name) {
+  name = (name || "").trim();
+  if (!name) return { family: "", given: "" };
+  if (name.includes(",")) {
+    const parts = name.split(",");
+    return { family: parts[0].trim(), given: (parts[1] || "").trim() };
+  }
+  const parts = name.split(/\s+/);
+  const family = parts.pop();
+  return { family, given: parts.join(" ") };
+}
+
+/* ---- ORCID: full contributor (author) list for one work ---- */
+async function orcidAuthorsByPutCode(putCode) {
+  try {
+    const w = await fetchJSON(
+      `https://pub.orcid.org/v3.0/${SITE.orcid}/work/${putCode}`,
+      { "Accept": "application/json" }
+    );
+    const list = (w.contributors && w.contributors.contributor) || [];
+    const authors = list
+      .map(c => (c["credit-name"] && c["credit-name"].value) || "")
+      .filter(Boolean)
+      .map(splitName);
+    return authors;
+  } catch (e) {
+    return null;
+  }
+}
+
+/* ---- Crossref: tidy venue/year/type metadata for a DOI ---- */
 async function crossrefByDoi(doi) {
   try {
     const data = await fetchJSON(`https://api.crossref.org/works/${encodeURIComponent(doi)}`);
@@ -57,7 +91,7 @@ function authorsHtml(authors) {
   if (!authors || !authors.length) return "";
   return authors.map(a => {
     const initials = a.given
-      ? a.given.split(/[\s.-]+/).filter(Boolean).map(x => x[0].toUpperCase() + ".").join(" ")
+      ? a.given.split(/[\s.-]+/).filter(Boolean).map(x => x[0].toUpperCase() + ".").join(" ")
       : "";
     const name = escapeHtml([initials, a.family].filter(Boolean).join(" ").trim() || a.family);
     return isHighlighted(a.family, a.given)
@@ -74,6 +108,7 @@ function parseOrcidSummary(group) {
   const type = (s.type || "").replace(/-/g, " ");
   const year = s["publication-date"] && s["publication-date"].year
     ? parseInt(s["publication-date"].year.value, 10) : null;
+  const putCode = s["put-code"];
 
   let doi = "", url = "";
   const ids = (group["external-ids"] && group["external-ids"]["external-id"]) ||
@@ -87,7 +122,7 @@ function parseOrcidSummary(group) {
   });
   if (s.url && s.url.value && !url) url = s.url.value;
 
-  return { title, journal, type, year, doi, url, isPreprint: /preprint/i.test(type) };
+  return { title, journal, type, year, doi, url, putCode, isPreprint: /preprint/i.test(type) };
 }
 
 function renderPublications(pubs) {
@@ -151,12 +186,21 @@ async function loadPublications() {
 
     let pubs = groups.map(parseOrcidSummary);
 
-    // Enrich with Crossref (authors + tidy metadata) where a DOI exists.
+    // Authors: use the full ORCID contributor list for every work.
+    await Promise.all(pubs.map(async p => {
+      if (p.putCode) {
+        const authors = await orcidAuthorsByPutCode(p.putCode);
+        if (authors && authors.length) p.authors = authors;
+      }
+    }));
+
+    // Enrich venue/year/type from Crossref where a DOI exists.
+    // (Authors already come from ORCID; only fall back to Crossref if missing.)
     await Promise.all(pubs.map(async p => {
       if (p.doi) {
         const cr = await crossrefByDoi(p.doi);
         if (cr) {
-          p.authors = cr.authors;
+          if ((!p.authors || !p.authors.length) && cr.authors.length) p.authors = cr.authors;
           p.venue = cr.venue || p.journal;
           if (cr.year) p.year = cr.year;
           if (cr.title) p.title = cr.title;

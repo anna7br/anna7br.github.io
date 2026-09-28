@@ -209,6 +209,14 @@ async function loadPublications() {
       }
     }));
 
+    // Drop a preprint when a published (non-preprint) version with the same
+    // title exists (e.g. the Pathfinder preprint vs. its journal article).
+    const normTitle = t => (t || "").toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
+    const publishedTitles = new Set(
+      pubs.filter(p => !p.isPreprint).map(p => normTitle(p.title))
+    );
+    pubs = pubs.filter(p => !(p.isPreprint && publishedTitles.has(normTitle(p.title))));
+
     // De-duplicate by DOI/title, then render.
     const seen = new Set();
     pubs = pubs.filter(p => {

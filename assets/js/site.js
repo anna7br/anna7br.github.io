@@ -41,7 +41,6 @@ const NAV = [
   { href: "/publications/", label: "Publications" },
   { href: "/media/",        label: "Media Coverage" },
   { href: "/beyond/",       label: "Beyond Research" },
-  { href: "/side-quests/",  label: "Side Quests" },
 ];
 
 /* ---------- inline SVG icons ---------- */
